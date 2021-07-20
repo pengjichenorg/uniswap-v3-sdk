@@ -207,6 +207,10 @@ export abstract class NonfungiblePositionManager extends SelfPermit {
     if (isMint(options)) {
       const recipient: string = validateAndParseAddress(options.recipient)
 
+      // 调用mint方法添加初始流动性，创建新的position
+      // 调用increaseLiquidity调整流动性
+      // 两者的区别就是mint中会产生NFTtoken，increaseLiquidity中不再产生NFTtoken
+
       calldatas.push(
         NonfungiblePositionManager.INTERFACE.encodeFunctionData('mint', [
           {
